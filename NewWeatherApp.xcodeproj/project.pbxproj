@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63DFAAFD1F2097F500E245AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DFAAFC1F2097F500E245AE /* AppDelegate.swift */; };
-		63DFAAFF1F2097F500E245AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DFAAFE1F2097F500E245AE /* ViewController.swift */; };
+		63DFAAFF1F2097F500E245AE /* DailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DFAAFE1F2097F500E245AE /* DailyViewController.swift */; };
 		63DFAB021F2097F500E245AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63DFAB001F2097F500E245AE /* Main.storyboard */; };
 		63DFAB051F2097F500E245AE /* NewWeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63DFAB031F2097F500E245AE /* NewWeatherApp.xcdatamodeld */; };
 		63DFAB0A1F2097F500E245AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63DFAB081F2097F500E245AE /* LaunchScreen.storyboard */; };
@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		63DFAAF91F2097F500E245AE /* NewWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DFAAFC1F2097F500E245AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63DFAAFE1F2097F500E245AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		63DFAAFE1F2097F500E245AE /* DailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewController.swift; sourceTree = "<group>"; };
 		63DFAB011F2097F500E245AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63DFAB041F2097F500E245AE /* NewWeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewWeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		63DFAB091F2097F500E245AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,12 +66,12 @@
 			children = (
 				63DFAB151F20AA6B00E245AE /* Assets.xcassets */,
 				63DFAAFC1F2097F500E245AE /* AppDelegate.swift */,
-				63DFAAFE1F2097F500E245AE /* ViewController.swift */,
+				63DFAAFE1F2097F500E245AE /* DailyViewController.swift */,
+				63DFAB111F20A19800E245AE /* HourlyTableViewController.swift */,
 				63DFAB001F2097F500E245AE /* Main.storyboard */,
 				63DFAB081F2097F500E245AE /* LaunchScreen.storyboard */,
 				63DFAB0B1F2097F500E245AE /* Info.plist */,
 				63DFAB031F2097F500E245AE /* NewWeatherApp.xcdatamodeld */,
-				63DFAB111F20A19800E245AE /* HourlyTableViewController.swift */,
 				63DFAB131F20A23900E245AE /* Weather.swift */,
 				63DFAB171F20ADA700E245AE /* DailyTableViewCell.swift */,
 				63DFAB1B1F20B18500E245AE /* TableViewCell.swift */,
@@ -153,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63DFAB121F20A19800E245AE /* HourlyTableViewController.swift in Sources */,
-				63DFAAFF1F2097F500E245AE /* ViewController.swift in Sources */,
+				63DFAAFF1F2097F500E245AE /* DailyViewController.swift in Sources */,
 				63DFAB051F2097F500E245AE /* NewWeatherApp.xcdatamodeld in Sources */,
 				63DFAB181F20ADA700E245AE /* DailyTableViewCell.swift in Sources */,
 				63DFAAFD1F2097F500E245AE /* AppDelegate.swift in Sources */,

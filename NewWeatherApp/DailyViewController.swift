@@ -7,77 +7,69 @@
 //
 
 import UIKit
+import CoreLocation
 
 
 class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var mytable: UITableView!
-
+    
     var forecastArray = Array<Weather>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mytable.delegate = self
         mytable.dataSource = self
+        searchBar.delegate = self
         
-        getDatafromJson(link: "https://api.darksky.net/forecast/68d36f60226ba87c659b7bb4aa3458c7/16.067538,%20108.150059")
         
-        // Do any additional setup after loading the view, typically from a nib.
+        updateWeatherForLocation(location: "Da Nang")
+        
+//        var leftSwipe = UISwipeGestureRecognizer
+        
+    
     }
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        if let locationString = searchBar.text, !locationString.isEmpty {
+            //call updateWeatherForLocation
+            print(locationString)
+            updateWeatherForLocation(location: locationString)
+            
+        }
         
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         return true
     }
     
-    
-    func getDatafromJson(link: String) {
-
-        let url = URL(string: link)
-        let task = URLSession.shared.dataTask(with: url!) { (data, respone, error) in
-            if error != nil {
-                print(error!)
-            }
-            else{
-                if let content = data
+    func updateWeatherForLocation(location: String) {
+        
+        CLGeocoder().geocodeAddressString(location) { (placemarker, error) in
+            if error == nil{
+                if let location = placemarker?.first?.location
                 {
-                    do {
-                        let myJson = try JSONSerialization.jsonObject(with: content, options: .mutableContainers) as! [String:AnyObject]
-                        if let forecastDaily = myJson["daily"] as? [String: AnyObject]
-                        {
-                            let forecastDailyData = forecastDaily["data"] as? [[String:AnyObject]]
-                            for dailyPoint in forecastDailyData! {
-                                
-                                let summary = dailyPoint["summary"] as! String
-                                let icon = dailyPoint["icon"] as! String
-                                let temp = dailyPoint["temperatureMax"] as! Double
-                                
-                                let weatherObject = Weather(summary: summary, icon: icon, temp: temp)
-                                
-                                
-                                self.forecastArray.append(weatherObject)
-                                DispatchQueue.main.async {
-                                    self.mytable.reloadData()
-                                }
+                    Weather.forecast(withLocation: location.coordinate, parameter: "daily", completion: { (results) in
+                        
+                        if let weather = results {
+                            self.forecastArray = weather
+                            DispatchQueue.main.async {
+                                self.mytable.reloadData()
                             }
                         }
-                    } catch
-                    {
-                        
-                    }
+                    })
                 }
             }
         }
-        task.resume()
         
     }
-  
-  
+    
+    
 }
 
 
@@ -104,15 +96,26 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         let celsius = Int((fahrenheit - 32) * (5 / 9))
         
         cell.lblsummary.text = weatherObject.summary
+        cell.lblsummary.sizeToFit()
         cell.lbltemp.text = "\(celsius) °C"
         cell.imgIcon.image = UIImage(named: weatherObject.icon)
-               
+        
         
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        
+        if let textlabel = header.textLabel {
+            textlabel.font = textlabel.font.withSize(15)
+            textlabel.textColor = UIColor.blue
+        }
+    }
+
 }
 
 
